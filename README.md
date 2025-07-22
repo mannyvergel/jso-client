@@ -107,12 +107,19 @@ async function updateUser(userId, data) {
       // This is an error returned by the API (success: false)
       console.error('API Error:', error.message);
 
-      // You can also access the detailed errors array
+      // Access the detailed errors array
       if (error.errors) {
         error.errors.forEach(err => {
           console.error(`- [${err.source?.field || 'general'}]: ${err.message}`);
         });
       }
+
+      // Access the original data that caused the error
+      if (error.data) {
+        console.log('Original data that caused the error:', error.data);
+        // You can use this to re-populate form fields
+      }
+
     } else {
       // This is a network error, invalid JSON, or other issue.
       console.error('Request Failed:', error.message);
@@ -135,6 +142,7 @@ async function updateUser(userId, data) {
 An error class that extends the native `Error`. An instance contains:
 * `message`: The top-level `message` from the failed JSO response.
 * `errors`: The optional `errors` array from the JSO response.
+* `data`: The optional `data` payload from the failed JSO response.
 * `response`: The original Fetch `Response` object.
 
 ## License

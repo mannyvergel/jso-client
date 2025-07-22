@@ -16,6 +16,13 @@ export class JsoError extends Error {
   errors;
 
   /**
+   * The optional data payload from a failed JSO response, which typically
+   * contains the original data that caused the error.
+   * @type {any | undefined}
+   */
+  data;
+
+  /**
    * The original Fetch API Response object.
    * @type {Response}
    */
@@ -26,11 +33,13 @@ export class JsoError extends Error {
    * @param {string} message - The top-level error message from the JSO response.
    * @param {Response} response - The original Fetch Response object.
    * @param {Array<Object> | undefined} [errors] - The optional array of detailed errors.
+   * @param {any | undefined} [data] - The optional data payload from the failed response.
    */
-  constructor(message, response, errors) {
+  constructor(message, response, errors, data) {
     super(message);
     this.name = 'JsoError';
     this.errors = errors;
+    this.data = data;
     this.response = response;
   }
 }
@@ -47,21 +56,6 @@ export class JsoError extends Error {
  * @param {string | URL | Request} resource - The resource to fetch. This is the same as the first argument to `fetch()`.
  * @param {RequestInit} [options] - An object containing any custom settings that you want to apply to the request. This is the same as the second argument to `fetch()`.
  * @returns {Promise<{data: any, meta?: object, links?: object}>} A promise that resolves with the JSO payload, or rejects with a `JsoError` or a generic `Error`.
- *
- * @example
- * // Example usage with async/await
- * async function getUser(userId) {
- * try {
- * const { data: userData, meta } = await jsoFetch(`/api/users/${userId}`);
- * console.log('User data:', userData);
- * } catch (error) {
- * if (error instanceof JsoError) {
- * console.error('API Error:', error.message);
- * } else {
- * console.error('Network or other error:', error.message);
- * }
- * }
- * }
  */
 export async function jsoFetch(resource, options) {
   let response;
@@ -113,7 +107,7 @@ export async function jsoFetch(resource, options) {
     if (typeof body.message !== 'string') {
         throw new Error('Invalid JSO error response: "message" property is missing or not a string.');
     }
-    throw new JsoError(body.message, response, body.errors);
+    throw new JsoError(body.message, response, body.errors, body.data);
   }
 }
 
