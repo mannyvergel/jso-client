@@ -1,0 +1,40 @@
+{
+  "name": "jso-client",
+  "version": "1.0.0",
+  "description": "A lightweight, zero-dependency wrapper around the Fetch API to interact with servers that use the JSO specification.",
+  "main": "index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.js"
+    }
+  },
+  "files": [
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mannyvergel/jso-client.git"
+  },
+  "keywords": [
+    "jso",
+    "api",
+    "fetch",
+    "client",
+    "json",
+    "specification"
+  ],
+  "author": "Manny Vergel (Ipsumer IT Services)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mannyvergel/jso-client/issues"
+  },
+  "homepage": "https://github.com/mannyvergel/jso-client#readme"
+}
+
