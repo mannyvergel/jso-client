@@ -1,5 +1,8 @@
 # JSO Client
 
+[![npm version](https://img.shields.io/npm/v/jso-client.svg)](https://www.npmjs.com/package/jso-client)
+[![license](https://img.shields.io/npm/l/jso-client.svg)](https://github.com/mannyvergel/jso-client/blob/main/LICENSE)
+
 A lightweight, zero-dependency wrapper around the Fetch API to interact with servers that use the [JSO specification](https://github.com/mannyvergel/jso-specification).
 
 `jso-client` simplifies client-side development by automatically handling the JSO response envelope, providing a clean interface for successful data and a structured approach for handling errors.
