@@ -1,6 +1,6 @@
 {
   "name": "jso-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight, zero-dependency wrapper around the Fetch API to interact with servers that use the JSO specification.",
   "main": "index.js",
   "type": "module",
